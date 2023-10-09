@@ -1,4 +1,5 @@
 import React from "react";
+import {ListItem} from "./components/ListItem";
 
 type TaskType = {
 	id: number,
@@ -8,10 +9,10 @@ type TaskType = {
 
 type PropsType = {
 	title: string,
-	tasks: Array<TaskType>
+	tasks: TaskType[]
 }
 
-export function Todolist(props: PropsType) {
+export const Todolist = (props: PropsType) => {
 	return (
 		<div>
 			<h3>{props.title}</h3>
@@ -20,9 +21,7 @@ export function Todolist(props: PropsType) {
 				<button>+</button>
 			</div>
 			<ul>
-				<li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>
-				<li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>
+				<ListItem tasksList={props.tasks}/>
 			</ul>
 			<div>
 				<button>All</button>
