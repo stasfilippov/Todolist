@@ -1,7 +1,7 @@
 import React from "react";
 import {TaskList} from "./TaskList";
 
-type TaskType = {
+export type TaskType = {
 	id: number,
 	title: string,
 	isDone: boolean
@@ -19,7 +19,7 @@ export const Todolist = (props: PropsType) => {
 				<input/>
 				<button>+</button>
 			</div>
-			<TaskList taskList={props.tasks}/>
+			<TaskList tasksList={props.tasks}/>
 			<div>
 				<button>All</button>
 				<button>Active</button>

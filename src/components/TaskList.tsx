@@ -1,18 +1,13 @@
 import React from "react";
-
-type TaskPropsType = {
-	id: number,
-	title: string,
-	isDone: boolean
-}
+import {TaskType} from "./Todolist";
 
 type TaskListPropsType = {
-	taskList: TaskPropsType[]
+	tasksList: TaskType[]
 }
 export const TaskList = (props: TaskListPropsType) => {
-	return (
+	 return (
 		<ul>
-			{props.taskList.map((el) => {
+			{props.tasksList.map((el) => {
 				return (
 					<li key={el.id}>
 						<input type="checkbox" checked={el.isDone}/>
