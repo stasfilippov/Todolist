@@ -1,5 +1,6 @@
-import React, {ChangeEvent, KeyboardEvent, useRef, useState} from 'react';
+import React, {ChangeEvent, ReactNode, KeyboardEvent, useRef, useState} from 'react';
 import {FilterValuesType} from './App';
+import {useAutoAnimate} from "@formkit/auto-animate/react";
 
 type TaskType = {
     id: string
@@ -13,11 +14,13 @@ type PropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
+    children?:ReactNode
 }
 
-export function Todolist(props: PropsType) {
+export const Todolist:React.FC<PropsType>=({children, ...props}) => {
     let [title, setTitle] = useState("")
     let onChangeRef = useRef<HTMLInputElement>(null)
+    const [listRef] = useAutoAnimate<HTMLUListElement>()
 
     const addTask = () => {
         if(onChangeRef.current) {
@@ -54,7 +57,7 @@ export function Todolist(props: PropsType) {
             />
             <button onClick={addTask}>+</button>
         </div>
-        <ul>
+        <ul ref={listRef}>
             {
                 props.tasks.map(t => {
 
@@ -76,6 +79,7 @@ export function Todolist(props: PropsType) {
             <button onClick={onActiveClickHandler}>Active</button>
             <button onClick={onCompletedClickHandler}>Completed</button>
         </div>
+        {children}
     </div>
 }
 
